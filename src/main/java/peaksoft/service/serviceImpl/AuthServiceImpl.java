@@ -52,6 +52,9 @@ public class AuthServiceImpl implements AuthService {
         authInfo.setEmail("admin@gmail.com");
         authInfo.setPassword(passwordEncoder.encode("admin"));
         authInfo.setRole(Role.ADMIN);
-        authInfoRepository.save(authInfo);
+        if (!authInfoRepository.existsByEmail(authInfo.getEmail())) {
+            authInfoRepository.save(authInfo);
+        }
+
     }
 }

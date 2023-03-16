@@ -34,6 +34,10 @@ public class AuthInfo implements UserDetails {
     @Enumerated(EnumType.STRING)
     private Role role;
 
+    @OneToOne(cascade = CascadeType.ALL, orphanRemoval = true)
+    @JoinColumn(name = "author_id")
+    private Author author;
+
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
